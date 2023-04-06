@@ -1,0 +1,38 @@
+{% extends "layout.twig" %}
+
+{% block title %}Upload Video Page{% endblock %}
+
+{% block body %}
+
+    <form action="processing.php" method="POST" style="width: 100%">
+        <div class="form-group">
+            <label for="formControlFile1">Video:</label>
+            <input type="file" class="form-control-file" id="formControlFile1" name="fileInput" required>
+        </div>
+        <div class="form-group">
+            <label for="titleInput">Video Title</label>
+            <input class="form-control" type="text" placeholder="Title" name="titleInput">
+        </div>
+        <div class="form-group">
+            <label for="descriptionInput">Video Description</label>
+            <textarea class="form-control" placeholder="Description" name="descriptionInput" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="categoryInput">Video Category</label>
+            <select class="form-control" name="categoryInput">
+                {%  for category in categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="privacyInput">Video Privacy</label>
+            <select class="form-control" name="privacyInput">
+                <option value="0">Private</option>
+                <option value="1">Public</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary" name="uploadButton" style="width: 100%;">Upload Video</button>
+    </form>
+
+{% endblock %}
